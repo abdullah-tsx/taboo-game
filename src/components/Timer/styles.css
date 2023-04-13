@@ -1,0 +1,17 @@
+.start{
+	background-color: var(--light-navy-blue);
+	border: 1px solid var(--light-navy-blue);
+}
+
+.start:hover{
+	color: var(--light-navy-blue);
+	background-color: var(--white);
+	border: 1px solid var(--light-navy-blue);
+}
+
+.start:disabled{
+	color: var(--light-navy-blue);
+	background-color: var(--white);
+	border: 1px solid var(--light-navy-blue);
+	cursor: not-allowed;
+}

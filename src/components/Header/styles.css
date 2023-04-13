@@ -1,0 +1,31 @@
+.header {
+	color: var(--light-maroon);
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--light-navy-blue);
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+}
+
+li {
+	display: list-item;
+	font-weight: lighter;
+	font-size: 0.9rem;
+	cursor: pointer;
+	padding: 20px 30px;
+}
+
+li:hover, .active {
+	font-weight: bold;
+	background-color: #171332;
+}
