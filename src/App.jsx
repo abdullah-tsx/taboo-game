@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Timer from "./components/Timer";
@@ -9,18 +9,20 @@ import {questions} from "./helpers/questions.js";
 
 const randomQuestion = function (obj) {
 	const keys = Object.keys(obj);
-	const randomKey = keys[ keys.length * Math.random() << 0];
+	const randomKey = keys[keys.length * Math.random() << 0];
 	return {'answer': randomKey, hints: obj[randomKey]}
 };
 
 function App() {
 
-const [category, setCategory] = useState(null);
-const [score, setScore] = useState(0);
-	const [{answer,hints}, setQuestion] = useState({});
+	const [category, setCategory] = useState(null);
+	const [score, setScore] = useState(0);
+	const [{answer, hints}, setQuestion] = useState({});
 
 	const handleCorrect = () => {
-		setScore((score)=>{return score+1});
+		setScore((score) => {
+			return score + 1
+		});
 		setQuestion(randomQuestion(questions[category]));
 	}
 	const handleSkip = () => {
@@ -32,6 +34,11 @@ const [score, setScore] = useState(0);
 		setScore(0);
 	}
 
+	const timer = useMemo(() => {
+		return <Timer cateogry={category} setCategory={setCategory} resetGame={resetGame} canStart={!category}/>
+	}, [category])
+
+
 	return (
 		<div className="App">
 			<Header setCategory={setCategory} category={category} setQuestion={setQuestion}/>
@@ -39,7 +46,7 @@ const [score, setScore] = useState(0);
 				<div className="game-stats">
 					<h3>Correct: {score}</h3>
 					<h3>Selected Category: {category}</h3>
-					<Timer cateogry={category} setCategory={setCategory} resetGame={resetGame} canStart={!category}/>
+					{timer}
 				</div>
 				{Boolean(category) ? <div className="game">
 					<button className='skip' onClick={handleSkip}>Skip</button>
